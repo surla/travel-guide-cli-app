@@ -7,11 +7,50 @@ class CLI
 
   def start
     input = ""
-    while input != "exit"
-      puts "Where would you like to travel to?"
-      input = gets.strip
-      binding.pry
-    end
+
+    puts "Where would you like to travel to?"
+    input = gets.strip
+
+    city = find_by_name(input)
+    puts ""
+    puts "    Traveling to #{city.name}!!!! "
+    puts ""
+
+    puts "------ Best Time To Visit ------"
+    puts ""
+    puts "#{city.best_time_to_visit}"
+    puts ""
+
+    puts "------ #{city.name} Transportation ------"
+    puts ""
+    puts "#{city.transportation}"
+    puts ""
+
+    puts "------ #{city.name} Weather ------"
+    puts ""
+    puts "#{city.weather}"
+    puts ""
+
+    puts "------ #{city.name} Know Before Visiting ------"
+    puts ""
+    puts "#{city.know_before_visiting}"
+    puts ""
+
+    puts "------ #{city.name} Language ------"
+    puts ""
+    puts "#{city.language}"
+    puts ""
+
+    puts "------ #{city.name} Electric ------"
+    puts ""
+    puts "#{city.electric}"
+    puts ""
+
+    puts "------ #{city.name} Currency ------"
+    puts ""
+    puts "#{city.currency}"
+    puts ""
+
   end
 
   def list_cities
@@ -20,4 +59,7 @@ class CLI
     end
   end
 
+  def find_by_name(input)
+    City.all.detect {|c| c.name == input}
+  end
 end
