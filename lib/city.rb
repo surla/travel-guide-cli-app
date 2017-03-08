@@ -1,5 +1,5 @@
 class City
-  attr_accessor :name,
+  attr_reader :name,
                   :url,
                   :best_time_to_visit,
                   :transportation,
@@ -17,12 +17,9 @@ class City
     @@all << self
   end
 
-
   def self.all
     @@all
   end
-
-
 
   def best_time_to_visit
     details.first.text
@@ -60,9 +57,5 @@ class City
     def details
       doc.css("p.article-tips__content")
     end
-
-
-
-
 
 end
