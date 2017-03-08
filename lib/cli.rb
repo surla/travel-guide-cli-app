@@ -8,12 +8,23 @@ class CLI
   def start
     input = ""
 
-    puts "Where would you like to travel to?"
-    input = gets.strip
+    while input != "exit"
+      puts "Where would you like to travel to?"
+      puts "Type list to see all cities"
+      input = gets.strip
 
-    city = find_by_name(input)
+      case input
+        when "list"
+          list_cities
+        when "exit"
+          puts "Have Fun Traveling!!!!!"
+        else
+          city = find_by_name(input)
+          list_city_details(city)
 
-    list_city_details(city)
+          puts "Enter another city:"
+      end
+    end
   end
 
   def list_cities
@@ -65,5 +76,7 @@ class CLI
     puts ""
     puts "#{city.currency}"
     puts ""
+
+    puts "     Have Fun Traveling!!!!"
   end
 end
