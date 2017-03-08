@@ -12,6 +12,21 @@ class CLI
     input = gets.strip
 
     city = find_by_name(input)
+
+    list_city_details(city)
+  end
+
+  def list_cities
+    City.all.each_with_index do |c, i|
+      puts "#{i}. #{c.name}"
+    end
+  end
+
+  def find_by_name(input)
+    City.all.detect {|c| c.name == input}
+  end
+
+  def list_city_details(city)
     puts ""
     puts "    Traveling to #{city.name}!!!! "
     puts ""
@@ -50,16 +65,5 @@ class CLI
     puts ""
     puts "#{city.currency}"
     puts ""
-
-  end
-
-  def list_cities
-    City.all.each_with_index do |c, i|
-      puts "#{i}. #{c.name}"
-    end
-  end
-
-  def find_by_name(input)
-    City.all.detect {|c| c.name == input}
   end
 end
