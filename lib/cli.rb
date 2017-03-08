@@ -6,23 +6,34 @@ class CLI
   end
 
   def start
+    puts ""
+    puts "------ Welcome to this Travel Guide ------"
+    puts ""
+
     input = ""
 
-    while input != "exit"
+    while input != "Exit"
       puts "Where would you like to travel to?"
-      puts "Type list to see all cities"
-      input = gets.strip
+      puts "       Enter name of city or type list to see all cities."
+
+      input = gets.split.map(&:capitalize).join(' ').strip
 
       case input
-        when "list"
+        when "List"
           list_cities
-        when "exit"
-          puts "Have Fun Traveling!!!!!"
+        when "Exit"
+          puts ""
+          puts "Have Fun Traveling!!!"
         else
-          city = find_by_name(input)
-          list_city_details(city)
-
-          puts "Enter another city:"
+          if find_by_name(input)
+            city = find_by_name(input)
+            list_city_details(city)
+          else
+            puts ""
+            puts "No travel guide found"
+            puts ""
+            puts "Please try a different city."
+          end
       end
     end
   end
@@ -39,15 +50,15 @@ class CLI
 
   def list_city_details(city)
     puts ""
-    puts "    Traveling to #{city.name}!!!! "
+    puts "    #{city.name} Travel Information! "
     puts ""
 
-    puts "------ Best Time To Visit ------"
+    puts "------ Best Time To Visit #{city.name}------"
     puts ""
     puts "#{city.best_time_to_visit}"
     puts ""
 
-    puts "------ #{city.name} Transportation ------"
+    puts "------ Transportation ------"
     puts ""
     puts "#{city.transportation}"
     puts ""
@@ -57,26 +68,27 @@ class CLI
     puts "#{city.weather}"
     puts ""
 
-    puts "------ #{city.name} Know Before Visiting ------"
+    puts "------ Know Before Visiting ------"
     puts ""
     puts "#{city.know_before_visiting}"
     puts ""
 
-    puts "------ #{city.name} Language ------"
+    puts "------ Language ------"
     puts ""
     puts "#{city.language}"
     puts ""
 
-    puts "------ #{city.name} Electric ------"
+    puts "------ Electric ------"
     puts ""
     puts "#{city.electric}"
     puts ""
 
-    puts "------ #{city.name} Currency ------"
+    puts "------ Currency ------"
     puts ""
     puts "#{city.currency}"
     puts ""
 
     puts "     Have Fun Traveling!!!!"
+    puts ""
   end
 end
