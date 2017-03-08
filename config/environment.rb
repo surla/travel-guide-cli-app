@@ -1,4 +1,4 @@
-reuire 'bundler'
+require 'bundler'
 
 Bundler.require
 
